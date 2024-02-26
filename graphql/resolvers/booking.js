@@ -1,10 +1,15 @@
 
+const user = require("../../models/user");
 const {bookEvent:reserveTicket,cancelBooking:cancelTicket, fetchAllBooking}= require("./../../service/bookings.service");
 
 module.exports ={
     reserveTicket: async (args) =>{
         try {
-            return reserveTicket(args.eventId,"65d811637e8a9c69640e72b4");
+            const existingUser= await user.findById(args.userId);
+            if(existingUser){
+                return reserveTicket(args.eventId,args.userId);
+            }
+             throw new Error("invalid user Id passed");
         } catch (error) {
             throw error;
         }

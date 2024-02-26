@@ -47,7 +47,7 @@ type RootQuery {
 type RootMutation {
     createEvent(event: EventInput!): Event 
     createUser(user: UserInput!): User 
-    bookEvent(eventId:ID!): Booking!
+    bookEvent(eventId:ID!,userId:ID!): Booking!
     cancelBooking(bookingID:ID!): Event!
 }
 schema {

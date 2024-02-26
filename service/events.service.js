@@ -1,4 +1,5 @@
 const Event = require('../models/event');
+const user = require('../models/user');
 
 const {transformEvent} = require("../utils/eventUtils");
 
@@ -12,7 +13,6 @@ const eventDetails = async(eventIds) => {
        const eventList=await  Event.findOne({ _id: { $in: eventIds } });
        if(eventList!=null)
         return transformEvent(eventList);
-      // return await Promise.all(eventList.map(async event =>  transformEvent(event)))
 
     } catch (err) {
         console.log("error while fetching event details", err);
@@ -35,8 +35,25 @@ const fetchAllEvents = async () =>{
     }
 }
 
-
+const createEvent = async event =>{
+    const newEvent = new Event({...event});
+    let createdEvent = null;
+    try {
+       const savedEvent= await newEvent.save();
+       createdEvent = await transformEvent(savedEvent);
+       const existingUser=await user.findById(event.creator);
+       if(!existingUser){
+            throw new Error("User not found");
+       } 
+       existingUser.createdEvents.push(createdEvent);
+       await existingUser.save();
+       return createdEvent;
+    } catch (error) {
+        throw error;
+    }
+    
+}
 module.exports = {
     fetchAllEvents,
-    eventDetails
+    eventDetails,createEvent
 }
