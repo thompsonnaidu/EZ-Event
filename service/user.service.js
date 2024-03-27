@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs');
 const eventUtils= require("../utils/eventUtils");
 const Event = require("../models/event");
 
+const jwt= require("jsonwebtoken");
+
 // fetch the user information from the database
 const userDetails = async (userId) => {
 
@@ -58,9 +60,38 @@ const createUser = async (user) => {
         throw error;
     }
 }
+
+
+const login = async ({email,password}) =>{
+    
+    try {
+        const user = await User.findOne({email:email});
+
+    if(!user){
+        throw new Error("Invalid Username");
+    }
+    const isEqual= await bcrypt.compare(password,user.password);
+     if(!isEqual){
+        throw new Error("Incorrect password")
+     }
+
+      const token= jwt.sign({userId:user.id,email:user.email},'topsecretkey',{expiresIn:'1h'});
+
+      return {
+        userId:user.id,
+        token:token,
+        tokenExpiration:1
+      }
+    } catch (error) {
+        throw error;    
+    }
+
+}
+
 module.exports = {
     userDetails,
     findUserById,
     fetchAllUser,
-    createUser
+    createUser,
+    login
 }

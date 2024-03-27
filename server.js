@@ -3,12 +3,13 @@ const graphqlHTTP = require('express-graphql').graphqlHTTP;
 const schemaBuilder = require('./graphql/schema/index');
 const resolverBuilder = require('./graphql/resolvers/index');
 const mongoose = require('mongoose');
+const isAuth = require("./middelware/is-auth.middleware");
 const app= express();
 
 
 app.use(express.json());    
 
-
+app.use(isAuth);
 app.use('/graphql',graphqlHTTP({
     schema: schemaBuilder,
     rootValue: resolverBuilder,
