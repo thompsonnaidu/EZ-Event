@@ -23,7 +23,7 @@ function App() {
             <MainNavigation />
             <main>
               <Routes>
-                <Route path="/" element={<Navigate replace to="/auth" />} />
+                <Route path="/" element={<Navigate replace to="/login" />} />
                 <Route path="/login" element={<Auth />} />
                 <Route path="/events" element={<EventsPage />} />
               

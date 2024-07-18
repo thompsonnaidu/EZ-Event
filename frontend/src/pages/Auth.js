@@ -47,23 +47,7 @@ const Auth = () => {
       console.error(e);
     }
 
-    // fetch("http://localhost:3000/graphql",{
-    //   method: 'POST',
-    //   body:JSON.stringify((isLogin? loginRequestBody:requestBody)),
-    //   headers:{
-    //     'Content-Type':'application/json'
-    //   }
-    // }).then((response)=>{
-    //   if(response.status !== 200 && response.status !== 201){
-    //     throw new Error("Failed");
-    //   }
-
-    //   return response.json();
-    // }).then((resData)=>{
-    //   console.log(resData);
-    // }).catch(err => {
-    //   console.log(err);
-    // });
+   
   };
 
 
@@ -153,7 +137,7 @@ const Auth = () => {
           )}
           {authData.isAuthenticated && (
             <Col md={6}>
-              <Card>
+              <Card className="mt-5 p-2">
                 <Card.Body>
                   <Card.Text>Login User: {authData.email}</Card.Text>
                 </Card.Body>

@@ -19,7 +19,7 @@ module.exports ={
         }
     },
 
-    cancelTicket: async (args)=>{
+    cancelTicket: async (args,req)=>{
         if (!req.isAuth) {
             throw new Error('Unauthenticated!');
           }
