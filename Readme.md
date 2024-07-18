@@ -4,7 +4,7 @@ EZEvent is an event booking application designed to allow users to create, regis
 ## High Level Design
 
 
-![HLD](docs/HHD.drawio.png)
+![HLD](docs/HLD.png)
 
 ## Technologies Used:
 
