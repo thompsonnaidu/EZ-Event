@@ -8,6 +8,10 @@ const bookingSchema= new mongoose.Schema({
     user:{
         type:Schema.Types.ObjectId,
         ref:'User'
+    },
+    isActive:{
+        type:Boolean,
+        default:true
     }
 },{timestamps:true});
 

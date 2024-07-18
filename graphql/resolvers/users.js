@@ -1,4 +1,4 @@
-const {fetchAllUser,createUser,login}= require("../../service/user.service");
+const {fetchAllUser,createUser,login,fetchLoggedInUser}= require("../../service/user.service");
 
 module.exports ={
      retrieveAllUser: async args =>{
@@ -23,5 +23,14 @@ module.exports ={
         } catch (error) {
             throw error;
         }
+     },
+     fetchLoggedInUser: async (args,req) =>{
+        try {
+            console.log("fetchLoggedInUser",req.isAuth)
+            return fetchLoggedInUser(req.isAuth,req.userId);
+        } catch (error) {
+            throw error;
+        }
      }
+
 }

@@ -74,8 +74,8 @@ const login = async ({email,password}) =>{
      if(!isEqual){
         throw new Error("Incorrect password")
      }
-
-      const token= jwt.sign({userId:user.id,email:user.email},'topsecretkey',{expiresIn:'1h'});
+     
+      const token= jwt.sign({userId:user.id,email:user.email},process.env.JWT_SECRET_KEY,{expiresIn:'1h'});
 
       return {
         userId:user.id,
@@ -88,10 +88,20 @@ const login = async ({email,password}) =>{
 
 }
 
+const fetchLoggedInUser = async (isAuth,userId) => {
+    if(isAuth){
+        throw new Error("Unauthenticated");
+    }
+    return {
+        userId
+    }
+   
+}
 module.exports = {
     userDetails,
     findUserById,
     fetchAllUser,
     createUser,
-    login
+    login,
+    fetchLoggedInUser
 }

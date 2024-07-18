@@ -1,7 +1,7 @@
 
 const {events:fetchEventResolver,createEvent:createEventResolver} = require("./events");
 const {reserveTicket,cancelTicket,bookings:bookingsResolver} = require("./booking");
-const {retrieveAllUser,createUser:createUserResolver,login:loginResolver} = require("./users");
+const {retrieveAllUser,createUser:createUserResolver,login:loginResolver,fetchLoggedInUser:fetchLoggedInUserResolver} = require("./users");
 
 
 
@@ -14,5 +14,6 @@ module.exports = {
     createUser: createUserResolver,
     bookEvent: reserveTicket,
     cancelBooking: cancelTicket,
-    login:loginResolver
+    login:loginResolver,
+    fetchLoggedInUser:fetchLoggedInUserResolver
 }

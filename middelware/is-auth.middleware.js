@@ -15,7 +15,7 @@ module.exports= (req,res,next)=>{
 
     let decodeToken;
     try {
-     decodeToken=jwt.verify(token,'topsecretkey'); 
+     decodeToken=jwt.verify(token,process.env.JWT_SECRET_KEY); 
     } catch (error) {
         req.isAuth  =false;
         return next();

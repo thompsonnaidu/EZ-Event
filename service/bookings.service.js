@@ -42,9 +42,9 @@ const cancelBooking=async (bookingID)=>{
     }
 }
 
-const fetchAllBooking = async () =>{
+const fetchAllBooking = async (userId) =>{
     try {
-        const bookingList = await Booking.find();
+        const bookingList = await Booking.find({user: userId});
         const data= await Promise.all(bookingList.map(async (booking) => transformBooking(booking)));
         return data;
     } catch (error) {

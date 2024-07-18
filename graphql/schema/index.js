@@ -52,6 +52,7 @@ type RootQuery {
     users:[User!]!
     bookings:[Booking!]!
     login(email:String!,password:String!):AuthData!
+    fetchLoggedInUser:AuthData!
 }
 type RootMutation {
     createEvent(event: EventInput!): Event 
