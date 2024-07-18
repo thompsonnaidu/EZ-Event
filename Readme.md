@@ -1,6 +1,13 @@
-![alt text](image.png)
+# EZ EVENT
 
-React Application Screenshot
+
+
+## High Level Design
+
+
+## Technologies Used:
+
+## React Application Screenshot
 
 - Profile Screen
 ![Profile screen](docs/frontend/afterlogin.png)
